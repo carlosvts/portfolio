@@ -42,7 +42,12 @@ class NavCenter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         NavLink(label: "About", onTap: () {}),
-        NavLink(label: "Projects", onTap: () {}),
+        NavLink(
+          label: "Projects",
+          onTap: () {
+            Navigator.pushNamed(context, "/projects");
+          },
+        ),
         NavLink(label: "Resume", onTap: () {}),
       ],
     );
