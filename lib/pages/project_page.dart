@@ -53,31 +53,41 @@ class ProjectsPage extends StatelessWidget {
             url: "https://github.com/carlosvts/raw-image-processor",
           ),
           ProjectCard(
-            title: "Malloc implementation"
-            description: "Low-level memory management system that mimics all stdlib.h functions related to memory: malloc, calloc, realloc and free",
+            title: "Malloc implementation",
+            description:
+                "Low-level memory management system that mimics all stdlib.h functions related to memory: malloc, calloc, realloc and free",
             url: "https://github.com/carlosvts/malloc-implementation",
           ),
           ProjectCard(
             title: "Input multiplexer",
-            description: "Asynchronous input listener for mouse and keyboard developed in C++ using Linux epoll API",
+            description:
+                "Asynchronous input listener for mouse and keyboard developed in C++ using Linux epoll API",
             url: "https://github.com/carlosvts/input-multiplexer",
           ),
           ProjectCard(
             title: "HTTP Server",
-            description: "A http-server that handles GET and POST methods written in pure C++ with linux syscalls",
+            description:
+                "A http-server that handles GET and POST methods written in pure C++ with linux syscalls",
             url: "https://github.com/carlosvts/http-server-cpp",
           ),
           ProjectCard(
             title: "Raytracer",
-            description: "Basic implementation of a raycasting engine developed in C++ with SFML2",
+            description:
+                "Basic implementation of a raycasting engine developed in C++ with SFML2",
             url: "https://github.com/carlosvts/raytracing",
           ),
           ProjectCard(
             title: "Sandbox Game",
-            description: "A real-time physics/simulation engine developed in C++ with Raylib",
+            description:
+                "A real-time physics/simulation engine developed in C++ with Raylib",
             url: "https://github.com/carlosvts/sandbox-game",
-            )
-
+          ),
+          ProjectCard(
+            title: "Conway's Game Of Life",
+            description:
+                "A simulation of a user-interactive Conway's Game Of Life developed in C++ with SFML2.",
+            url: "https://github.com/carlosvts/GameOfLife",
+          ),
         ],
       ),
     );
