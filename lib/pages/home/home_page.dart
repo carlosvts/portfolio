@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+void openGithub() {
+  launchUrl(
+    Uri.parse("https://github.com/carlosvts"),
+    mode: LaunchMode.externalApplication,
+  );
+}
 
 // Inkwell for handling states
 class NavLink extends StatelessWidget {
@@ -16,6 +25,29 @@ class NavLink extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           child: Text(label),
+        ),
+      ),
+    );
+  }
+}
+
+class NavIcon extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const NavIcon({super.key, required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      // inkweel needs a material, even if transparent
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(6),
+        child: Padding(
+          padding: const EdgeInsets.all((8)),
+          child: Icon(icon, size: 20, color: Colors.white),
         ),
       ),
     );
@@ -62,8 +94,8 @@ class NavRight extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        NavLink(label: "github", onTap: () {}),
-        NavLink(label: "instagram", onTap: () {}),
+        NavIcon(icon: MdiIcons.github, onTap: openGithub),
+        NavIcon(icon: MdiIcons.linkedin, onTap: openGithub),
       ],
     );
   }
