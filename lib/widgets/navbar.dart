@@ -21,35 +21,38 @@ class NavLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return TextButton(
-      onPressed: onTap,
-      style: ButtonStyle(
-        // Changes text color on hover for contrast
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.hovered)) {
-            return theme.scaffoldBackgroundColor;
-          }
-          return theme.textTheme.bodyMedium?.color;
-        }),
-        // Changes background to accent color on hover
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.hovered)) {
-            return theme.colorScheme.primary;
-          }
-          return Colors.transparent;
-        }),
-        // Matches layout spacing
-        padding: WidgetStateProperty.all(
-          const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    return Padding(
+      padding: EdgeInsetsGeometry.directional(start: 20, top: 15, end: 15),
+      child: TextButton(
+        onPressed: onTap,
+        style: ButtonStyle(
+          // Changes text color on hover for contrast
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return theme.scaffoldBackgroundColor;
+            }
+            return theme.textTheme.bodyMedium?.color;
+          }),
+          // Changes background to accent color on hover
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return theme.colorScheme.primary;
+            }
+            return Colors.transparent;
+          }),
+          // Matches layout spacing
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          ),
+          // Sharp corners
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          ),
+          // Disables default splash effect
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
         ),
-        // Sharp corners
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        ),
-        // Disables default splash effect
-        overlayColor: WidgetStateProperty.all(Colors.transparent),
+        child: Text(label),
       ),
-      child: Text(label),
     );
   }
 }
@@ -62,15 +65,18 @@ class NavIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      // inkweel needs a material, even if transparent
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(6),
-        child: Padding(
-          padding: const EdgeInsets.all((8)),
-          child: Icon(icon, size: 20, color: Colors.white),
+    return Padding(
+      padding: EdgeInsetsGeometry.directional(end: 20),
+      child: Material(
+        // inkweel needs a material, even if transparent
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(6),
+          child: Padding(
+            padding: const EdgeInsets.all((8)),
+            child: Icon(icon, size: 20, color: Colors.white),
+          ),
         ),
       ),
     );

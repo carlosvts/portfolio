@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/theme/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -33,21 +34,18 @@ class ProjectCard extends StatelessWidget {
             onTap: _openLink,
             child: Text(
               title,
-              style: const TextStyle(
-                fontSize: 16,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF5EEAD4),
+                color: const Color(0XFF5EEAD4),
               ),
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 32),
           Text(
             description,
-            style: const TextStyle(
-              fontSize: 13,
-              height: 1.4,
-              color: Colors.white70,
-            ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.white70, height: 1.4),
           ),
         ],
       ),
