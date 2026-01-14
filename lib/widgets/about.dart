@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AboutAvatar extends StatelessWidget {
   const AboutAvatar({super.key});
@@ -7,8 +8,8 @@ class AboutAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 64,
-      backgroundImage: AssetImage("FOO FOO FOO FOO"),
       backgroundColor: Colors.transparent,
+      child: SvgPicture.asset("assets/icons/logo.svg", width: 64, height: 64),
     );
   }
 }
