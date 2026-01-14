@@ -118,7 +118,12 @@ class NavCenter extends StatelessWidget {
             Navigator.pushNamed(context, "/projects");
           },
         ),
-        NavLink(label: "Resume", onTap: () {}),
+        NavLink(
+          label: "Notes",
+          onTap: () {
+            Navigator.pushNamed(context, "/notes");
+          },
+        ),
       ],
     );
   }
