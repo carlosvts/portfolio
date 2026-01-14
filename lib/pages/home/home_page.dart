@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -119,46 +120,6 @@ class Navbar extends StatelessWidget {
   }
 }
 
-class HomeLeft extends StatelessWidget {
-  const HomeLeft({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
-        Text("carlosvts"),
-        SizedBox(height: 12),
-        Text("Low-Level, placeholder, foo, bar"),
-      ],
-    );
-  }
-}
-
-class HomeRight extends StatelessWidget {
-  const HomeRight({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(color: Colors.blueGrey);
-  }
-}
-
-class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(flex: 6, child: HomeLeft()),
-        Expanded(flex: 4, child: HomeRight()),
-      ],
-    );
-  }
-}
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -168,15 +129,31 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           // Navbar
-          Expanded(
-            flex: 1, // 10% of height
-            child: Navbar(),
-          ),
+          Expanded(flex: 1, child: Navbar()),
 
-          // Conteúdo principal
+          // Content
           Expanded(
-            flex: 9, // 90% of height
-            child: HomeContent(),
+            flex: 9,
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    "assets/icons/logo.svg",
+                    width: 32,
+                    height: 32,
+                  ),
+                  SizedBox(height: 8),
+                  Text('carlosvts'), // makes a cool visualization with spaces
+                  SizedBox(height: 24),
+                  Text(
+                    'Low-level systems\nC / C++ / Linux / memory',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
