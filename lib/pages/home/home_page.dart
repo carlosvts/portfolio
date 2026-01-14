@@ -126,36 +126,38 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // Navbar
-          Expanded(flex: 1, child: Navbar()),
+      body: Center(
+        child: Column(
+          children: [
+            // Navbar
+            Expanded(flex: 1, child: Navbar()),
 
-          // Content
-          Expanded(
-            flex: 9,
-            child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/logo.svg",
-                    width: 32,
-                    height: 32,
-                  ),
-                  SizedBox(height: 8),
-                  Text('carlosvts'), // makes a cool visualization with spaces
-                  SizedBox(height: 24),
-                  Text(
-                    'Low-level systems\nC / C++ / Linux / memory',
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+            // Content
+            Expanded(
+              flex: 9,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/logo.svg",
+                      width: 32,
+                      height: 32,
+                    ),
+                    SizedBox(height: 8),
+                    Text('carlosvts'), // makes a cool visualization with spaces
+                    SizedBox(height: 24),
+                    Text(
+                      'Low-level systems\nC / C++ / Linux / memory',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
