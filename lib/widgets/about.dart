@@ -9,6 +9,7 @@ class AboutAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: 64,
       backgroundColor: Colors.transparent,
+      // logo, maybe profile picture in future
       child: SvgPicture.asset("assets/icons/logo.svg", width: 64, height: 64),
     );
   }
