@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/navbar.dart';
+import 'package:portfolio/widgets/noteitem.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
@@ -40,8 +41,26 @@ class NotesPage extends StatelessWidget {
                           mainAxisSpacing: 24,
                           crossAxisSpacing: 24,
                           childAspectRatio: 6, // list-like
-                          children: const [
+                          children: [
                             // NoteItem(title: 'Memory allocation strategies'),
+                            NoteItem(
+                              title: "Test",
+                              onTap: () {
+                                Navigator.pushNamed(context, "/");
+                              },
+                            ),
+                            NoteItem(
+                              title: "Test",
+                              onTap: () {
+                                Navigator.pushNamed(context, "/");
+                              },
+                            ),
+                            NoteItem(
+                              title: "Test",
+                              onTap: () {
+                                Navigator.pushNamed(context, "/");
+                              },
+                            ),
                           ],
                         ),
                       ),
