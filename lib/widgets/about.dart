@@ -21,7 +21,7 @@ class AboutName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Carlos VTS',
+      'CarlosVTS',
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.displayMedium,
     );
@@ -34,7 +34,7 @@ class AboutDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.',
+      'I’m a systems-oriented developer focused on low-level programming and operating systems. I enjoy learning how software behaves beneath abstractions, especially regarding memory management and performance.',
       textAlign: TextAlign.center,
       //style: Theme.of(context).textTheme.displaySmall,
     );
@@ -56,7 +56,7 @@ class AboutSection extends StatelessWidget {
         SizedBox(height: 24),
         // name
         const AboutName(),
-        SizedBox(height: 8),
+        SizedBox(height: 56),
         // main text: description
         const AboutDescription(),
 
