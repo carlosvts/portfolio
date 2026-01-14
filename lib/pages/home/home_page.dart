@@ -120,44 +120,88 @@ class Navbar extends StatelessWidget {
   }
 }
 
+class HomeIdentity extends StatelessWidget {
+  const HomeIdentity({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SvgPicture.asset("assets/icons/logo.svg", width: 32, height: 32),
+        SizedBox(height: 8, width: 8),
+        Text('carlosvts'),
+      ],
+    );
+  }
+}
+
+class HomeRole extends StatelessWidget {
+  const HomeRole({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("Low-Level systems engineer"),
+        SizedBox(width: 8, height: 8),
+        Text("C / C++ / Linux / Memory"),
+        Text("Learning: Flutter (Dart) / Rust"),
+      ],
+    );
+  }
+}
+
+class HomeDescription extends StatelessWidget {
+  const HomeDescription({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        "Constantly learning how systems work beneath abstractions and how careful design leads to predictable software",
+      ),
+    );
+  }
+}
+
+class HomeSignature extends StatelessWidget {
+  const HomeSignature({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text("learning how to communicate with the silicon"));
+  }
+}
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            // Navbar
-            Expanded(flex: 1, child: Navbar()),
+      body: Column(
+        children: [
+          // Navbar
+          Expanded(flex: 1, child: Navbar()),
 
-            // Content
-            Expanded(
-              flex: 9,
-              child: Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      "assets/icons/logo.svg",
-                      width: 32,
-                      height: 32,
-                    ),
-                    SizedBox(height: 8),
-                    Text('carlosvts'), // makes a cool visualization with spaces
-                    SizedBox(height: 24),
-                    Text(
-                      'Low-level systems\nC / C++ / Linux / memory',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+          // Content
+          Expanded(
+            flex: 9,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HomeIdentity(),
+                SizedBox(width: 12, height: 12),
+                HomeRole(),
+                SizedBox(width: 12, height: 12),
+                HomeDescription(),
+                SizedBox(width: 12, height: 12),
+                HomeSignature(),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
