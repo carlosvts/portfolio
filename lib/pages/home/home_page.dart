@@ -129,7 +129,7 @@ class HomeIdentity extends StatelessWidget {
       children: [
         SvgPicture.asset("assets/icons/logo.svg", width: 32, height: 32),
         SizedBox(height: 8, width: 8),
-        Text('carlosvts'),
+        Text('carlosvts', style: Theme.of(context).textTheme.displayLarge),
       ],
     );
   }
@@ -144,8 +144,14 @@ class HomeRole extends StatelessWidget {
       children: [
         Text("Low-Level systems engineer"),
         SizedBox(width: 8, height: 8),
-        Text("C / C++ / Linux / Memory"),
-        Text("Learning: Flutter (Dart) / Rust"),
+        Text(
+          "C / C++ / Linux / Memory",
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        Text(
+          "Learning: Flutter (Dart) / Rust",
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
       ],
     );
   }
@@ -159,6 +165,8 @@ class HomeDescription extends StatelessWidget {
     return Center(
       child: Text(
         "Constantly learning how systems work beneath abstractions and how careful design leads to predictable software",
+        style: Theme.of(context).textTheme.bodyMedium,
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -169,7 +177,14 @@ class HomeSignature extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("learning how to communicate with the silicon"));
+    return Center(
+      child: Text(
+        "learning how to communicate with the silicon",
+        style: Theme.of(
+          context,
+        ).textTheme.labelMedium?.copyWith(fontStyle: FontStyle.italic),
+      ),
+    );
   }
 }
 
@@ -194,9 +209,9 @@ class HomePage extends StatelessWidget {
                 HomeIdentity(),
                 SizedBox(width: 12, height: 12),
                 HomeRole(),
-                SizedBox(width: 12, height: 12),
+                SizedBox(width: 24, height: 24),
                 HomeDescription(),
-                SizedBox(width: 12, height: 12),
+                SizedBox(width: 32, height: 32),
                 HomeSignature(),
               ],
             ),
