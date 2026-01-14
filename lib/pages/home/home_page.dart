@@ -185,10 +185,13 @@ class HomeDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "Constantly learning how systems work beneath abstractions and how careful design leads to predictable software",
-        style: Theme.of(context).textTheme.bodyMedium,
-        textAlign: TextAlign.center,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Text(
+          "Constantly learning how systems work beneath abstractions and how careful design leads to predictable software",
+          style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
