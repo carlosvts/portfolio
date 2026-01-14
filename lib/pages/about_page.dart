@@ -1,39 +1,53 @@
-Center(
-  child: ConstrainedBox(
-    constraints: const BoxConstraints(maxWidth: 700),
-    child: Column(
-      children: [
-        const SizedBox(height: 48),
+import 'package:flutter/material.dart';
+import 'package:portfolio/widgets/navbar.dart';
+import 'package:portfolio/widgets/about.dart';
+import 'package:portfolio/widgets/formation.dart';
+import 'package:portfolio/widgets/interests.dart';
 
-        // Avatar
-        CircleAvatar(
-          radius: 72,
-          backgroundImage: AssetImage('assets/me.jpg'),
-        ),
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
 
-        const SizedBox(height: 24),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              // able to scroll text
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 720),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 48,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Navbar(),
 
-        // Name
-        Text(
-          'Carlos Vts',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+                        SizedBox(height: 48),
 
-        const SizedBox(height: 8),
+                        AboutSection(),
 
-        // Role
-        Text(
-          'Computer Science • Low-level systems',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
+                        SizedBox(height: 40),
 
-        const SizedBox(height: 48),
+                        FormationSection(),
 
-        // About section
-        AboutSection(),
-        FormationSection(),
-        InterestsSection(),
-      ],
-    ),
-  ),
-)
+                        SizedBox(height: 40),
+
+                        InterestsSection(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
