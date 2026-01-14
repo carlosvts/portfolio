@@ -13,21 +13,43 @@ void openGithub() {
 // Inkwell for handling states
 class NavLink extends StatelessWidget {
   final String label;
-  final VoidCallback onTap; // when click, like void(*onTap)() in C
+  final VoidCallback onTap;
 
   const NavLink({super.key, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Text(label),
+    final theme = Theme.of(context);
+
+    return TextButton(
+      onPressed: onTap,
+      style: ButtonStyle(
+        // Changes text color on hover for contrast
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.hovered)) {
+            return theme.scaffoldBackgroundColor;
+          }
+          return theme.textTheme.bodyMedium?.color;
+        }),
+        // Changes background to accent color on hover
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.hovered)) {
+            return theme.colorScheme.primary;
+          }
+          return Colors.transparent;
+        }),
+        // Matches layout spacing
+        padding: WidgetStateProperty.all(
+          const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         ),
+        // Sharp corners
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        ),
+        // Disables default splash effect
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
       ),
+      child: Text(label),
     );
   }
 }
@@ -110,11 +132,11 @@ class Navbar extends StatelessWidget {
     return Row(
       children: [
         // Left
-        Expanded(flex: 2, child: NavLeft()),
+        NavLeft(),
         // Center
-        Expanded(flex: 6, child: NavCenter()),
+        const Spacer(),
         // Right
-        Expanded(flex: 2, child: NavRight()),
+        NavRight(),
       ],
     );
   }
@@ -204,15 +226,22 @@ class HomePage extends StatelessWidget {
             flex: 9,
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start, // at the top
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // some margin between navbar and main content, looks smoother
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.12,
+                ), // 15% screen size padding
                 HomeIdentity(),
-                SizedBox(width: 12, height: 12),
+                SizedBox(height: 16),
                 HomeRole(),
-                SizedBox(width: 24, height: 24),
+                SizedBox(height: 24),
                 HomeDescription(),
-                SizedBox(width: 32, height: 32),
+                SizedBox(height: 32),
                 HomeSignature(),
+                SizedBox(height: 40),
+                NavCenter(),
               ],
             ),
           ),
