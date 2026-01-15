@@ -33,7 +33,7 @@ class ProjectCard extends StatelessWidget {
           GestureDetector(
             onTap: _openLink,
             child: Text(
-              title,
+              "↗ $title",
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: const Color(0XFF5EEAD4),

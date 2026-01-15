@@ -10,7 +10,16 @@ void openGithub() {
   );
 }
 
-// Inkwell for handling states
+void openLikedin() {
+  launchUrl(
+    Uri.parse(
+      "https://www.linkedin.com/in/carlos-vin%C3%ADcius-teixeira-de-souza-916a82378/",
+    ),
+    mode: LaunchMode.externalApplication,
+  );
+}
+
+// Textbutton for colorfull hover
 class NavLink extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
@@ -151,7 +160,7 @@ class NavRight extends StatelessWidget {
     return Row(
       children: [
         NavIcon(icon: MdiIcons.github, onTap: openGithub),
-        NavIcon(icon: MdiIcons.linkedin, onTap: openGithub),
+        NavIcon(icon: MdiIcons.linkedin, onTap: openLikedin),
       ],
     );
   }
@@ -162,15 +171,20 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Left
-        NavLeft(),
-        // Center
-        const Spacer(),
-        // Right
-        NavRight(),
-      ],
+    return SizedBox(
+      height: 64,
+      child: Row(
+        children: [
+          // Left
+          NavLeft(),
+
+          // Center
+          const Spacer(),
+
+          // Right
+          NavRight(),
+        ],
+      ),
     );
   }
 }

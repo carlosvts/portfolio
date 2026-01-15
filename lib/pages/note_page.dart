@@ -3,6 +3,46 @@ import 'package:portfolio/widgets/navbar.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+class BackToNotes extends StatelessWidget {
+  const BackToNotes({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(24, 12, 0, 0),
+      child: TextButton(
+        onPressed: () => Navigator.pushNamed(context, '/notes'),
+        style: ButtonStyle(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          minimumSize: WidgetStateProperty.all(Size.zero),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          ),
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return theme.scaffoldBackgroundColor;
+            }
+            return theme.textTheme.bodyMedium?.color;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return theme.colorScheme.primary;
+            }
+            return Colors.transparent;
+          }),
+          // Sharp corners
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          ),
+        ),
+        child: const Text('← Back'),
+      ),
+    );
+  }
+}
+
 Future<String> loadNote(String slug) async {
   final String path = 'assets/markdown/$slug.md';
   return await rootBundle.loadString(path);
@@ -19,6 +59,8 @@ class NotePage extends StatelessWidget {
       body: Column(
         children: [
           Navbar(),
+          BackToNotes(),
+
           Expanded(
             child: FutureBuilder(
               future: loadNote(slug),
