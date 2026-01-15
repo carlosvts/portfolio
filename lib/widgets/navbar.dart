@@ -88,11 +88,24 @@ class NavLeft extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavLink(
-      label: "carlosvts",
-      onTap: () {
-        Navigator.pushNamed(context, '/');
-      },
+    return Row(
+      children: [
+        Padding(
+          padding: EdgeInsetsGeometry.directional(start: 24, top: 14),
+          child: SvgPicture.asset(
+            "assets/icons/logo.svg",
+            width: 16,
+            height: 16,
+          ),
+        ),
+
+        NavLink(
+          label: "carlosvts",
+          onTap: () {
+            Navigator.pushNamed(context, '/');
+          },
+        ),
+      ],
     );
   }
 }

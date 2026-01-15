@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                 // some margin between navbar and main content, looks smoother
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.12,
-                ), // 15% screen size padding
+                ), // 12% screen size padding
                 HomeIdentity(),
                 SizedBox(height: 16),
                 HomeRole(),

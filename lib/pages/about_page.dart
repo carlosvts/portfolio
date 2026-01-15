@@ -4,6 +4,20 @@ import 'package:portfolio/widgets/about.dart';
 import 'package:portfolio/widgets/formation.dart';
 import 'package:portfolio/widgets/interests.dart';
 
+class SectionDivider extends StatelessWidget {
+  const SectionDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 720),
+        child: Divider(color: Colors.white12, thickness: 1, height: 48),
+      ),
+    );
+  }
+}
+
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
@@ -31,11 +45,11 @@ class AboutPage extends StatelessWidget {
                         SizedBox(height: 48),
 
                         AboutSection(),
-
+                        SectionDivider(),
                         SizedBox(height: 40),
 
                         FormationSection(),
-
+                        SectionDivider(),
                         SizedBox(height: 40),
 
                         InterestsSection(),
