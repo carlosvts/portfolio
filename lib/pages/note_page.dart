@@ -3,6 +3,7 @@ import 'package:portfolio/widgets/navbar.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+// A little button that goes back to the notes section
 class BackToNotes extends StatelessWidget {
   const BackToNotes({super.key});
 
