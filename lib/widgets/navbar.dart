@@ -94,8 +94,8 @@ class NavLeft extends StatelessWidget {
           padding: EdgeInsetsGeometry.directional(start: 24, top: 14),
           child: SvgPicture.asset(
             "assets/icons/logo.svg",
-            width: 16,
-            height: 16,
+            width: 20,
+            height: 20,
           ),
         ),
 
