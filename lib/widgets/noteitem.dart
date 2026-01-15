@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 
 class NoteItem extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
+  final String slug;
 
-  const NoteItem({super.key, required this.title, required this.onTap});
+  const NoteItem({super.key, required this.title, required this.slug});
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: () => {Navigator.pushNamed(context, "/notes/$slug")},
         child: Text(
           "> $title",
           style: const TextStyle(
