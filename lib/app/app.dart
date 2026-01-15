@@ -9,6 +9,8 @@ import 'package:portfolio/pages/note_page.dart';
 import 'package:portfolio/pages/home/home_page.dart';
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
