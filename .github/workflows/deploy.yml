@@ -28,5 +28,5 @@ jobs:
           source-directory: 'build/web'
           destination-github-username: 'carlosvts'
           destination-repository-name: 'carlosvts.github.io'
-          user-email: seu-email@exemplo.com
+          user-email: carlosvtsdev@gmail.com
           target-branch: main
