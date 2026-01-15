@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/navbar.dart';
 import 'package:portfolio/widgets/noteitem.dart';
 
+// Redirects to note
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
 
