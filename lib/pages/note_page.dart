@@ -47,15 +47,61 @@ class NotePage extends StatelessWidget {
                 return Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 720),
-                    child: Padding(
+                    child: SingleChildScrollView(
                       padding: const EdgeInsetsGeometry.all(32),
                       child: MarkdownBody(
                         data: snapshot.data!,
                         selectable: true,
+                        imageBuilder: (uri, title, alt) {
+                          return Padding(
+                            padding: const EdgeInsetsGeometry.symmetric(
+                              vertical: 24,
+                            ),
+                            child: Image.asset(
+                              uri.toString(),
+                              fit: BoxFit.contain,
+                            ),
+                          );
+                        },
+
                         styleSheet:
                             MarkdownStyleSheet.fromTheme(
                               Theme.of(context),
                             ).copyWith(
+                              // HEADERS
+                              h1Padding: const EdgeInsets.only(
+                                top: 32,
+                                bottom: 20,
+                              ),
+                              h2Padding: const EdgeInsets.only(
+                                top: 28,
+                                bottom: 16,
+                              ),
+                              h3Padding: const EdgeInsets.only(
+                                top: 24,
+                                bottom: 12,
+                              ),
+
+                              // P
+                              pPadding: const EdgeInsets.only(bottom: 16),
+
+                              // LISTS
+                              listBulletPadding: const EdgeInsets.only(
+                                bottom: 16,
+                              ),
+
+                              // CODE BLOCKS
+                              codeblockPadding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 12,
+                              ),
+
+                              // QUOTES
+                              blockquotePadding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 20,
+                              ),
+
                               h1: Theme.of(context).textTheme.displaySmall
                                   ?.copyWith(
                                     fontSize: 34,
@@ -75,6 +121,20 @@ class NotePage extends StatelessWidget {
                               code: const TextStyle(
                                 fontSize: 15,
                                 fontFamily: 'monospace',
+                              ),
+
+                              blockquoteDecoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceContainerHighest
+                                    .withValues(alpha: 0.3),
+
+                                border: Border(
+                                  left: BorderSide(
+                                    color: const Color(0xFF5EEAD4),
+                                    width: 4,
+                                  ),
+                                ),
                               ),
                             ),
                       ),
