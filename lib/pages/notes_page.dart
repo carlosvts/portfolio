@@ -43,7 +43,7 @@ class NotesPage extends StatelessWidget {
                           childAspectRatio: 6, // list-like
                           children: [
                             // NoteItem(title: 'Memory allocation strategies'),
-                            NoteItem(title: "Test", slug: "testing-testing"),
+                            NoteItem(title: "Test", slug: "placeholder"),
                           ],
                         ),
                       ),
