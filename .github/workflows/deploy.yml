@@ -1,0 +1,32 @@
+name: Deploy to Root Pages
+on:
+  push:
+    branches:
+      - main # Ou a sua branch principal de código
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Build Web
+        run: |
+          flutter pub get
+          # Importante: o base-href deve ser / para domínio raiz
+          flutter build web --release --base-href "/"
+
+      - name: Deploy to Target Repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.DEPLOY_TOKEN }}
+        with:
+          source-directory: 'build/web'
+          destination-github-username: 'carlosvts'
+          destination-repository-name: 'carlosvts.github.io'
+          user-email: seu-email@exemplo.com
+          target-branch: main
