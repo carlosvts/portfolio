@@ -27,12 +27,13 @@ class ProjectCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           GestureDetector(
             onTap: _openLink,
             child: Text(
               "↗ $title",
+              softWrap: true,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: const Color(0XFF5EEAD4),
@@ -42,6 +43,8 @@ class ProjectCard extends StatelessWidget {
           const SizedBox(height: 32),
           Text(
             description,
+            softWrap: true,
+            overflow: TextOverflow.visible,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: Colors.white70, height: 1.4),
