@@ -28,6 +28,7 @@ class ProjectCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: [
           GestureDetector(
             onTap: _openLink,
