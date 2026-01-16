@@ -27,28 +27,37 @@ class ProjectCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // Safeguard column to dont overflow container
         mainAxisSize: MainAxisSize.min,
         children: [
           GestureDetector(
             onTap: _openLink,
-            child: Text(
-              "↗ $title",
-              softWrap: true,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: const Color(0XFF5EEAD4),
+            child: SizedBox(
+              // Titles respects width
+              width: double.infinity,
+              child: Text(
+                "↗ $title",
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0XFF5EEAD4),
+                ),
+                softWrap: true,
               ),
             ),
           ),
           const SizedBox(height: 32),
-          Text(
-            description,
-            softWrap: true,
-            overflow: TextOverflow.visible,
-            style: Theme.of(
-              context,
-            ).textTheme.bodySmall?.copyWith(color: Colors.white70, height: 1.4),
+          SizedBox(
+            // Description repsects width
+            width: double.infinity,
+            child: Text(
+              description,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Colors.white70,
+                height: 1.4,
+              ),
+              softWrap: true,
+            ),
           ),
         ],
       ),

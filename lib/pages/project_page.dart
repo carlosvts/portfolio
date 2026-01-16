@@ -41,7 +41,7 @@ class ProjectsPage extends StatelessWidget {
                   ProjectCard(
                     title: "Malloc implementation",
                     description:
-                        "Low-level memory management system mimicking malloc, calloc, realloc and free in a doubly linked list\n\n\nC • memory • heap • syscalls • cpu architecture",
+                        "Low-level memory management system mimicking malloc, calloc, realloc and free\n\nC • memory • syscalls",
                     url: "https://github.com/carlosvts/malloc-implementation",
                   ),
                   ProjectCard(
@@ -71,7 +71,7 @@ class ProjectsPage extends StatelessWidget {
                   ProjectCard(
                     title: "Game of Life",
                     description:
-                        "Interactive implementation of a colorful Conway's Game of Life cellular automata simulation\n\n\nC++ • SFML • simulation • cellular automata",
+                        "Interactive implementation of a colorful Conway's Game of Life cellular automata simulation\n\nC++ • SFML • simulation • cellular automata",
                     url: "https://github.com/carlosvts/GameOfLife",
                   ),
                   ProjectCard(
