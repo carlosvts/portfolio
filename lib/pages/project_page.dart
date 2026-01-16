@@ -22,7 +22,7 @@ class ProjectsPage extends StatelessWidget {
               padding: const EdgeInsets.all(32),
               // Use shrinkWrap: false (default) inside Expanded
               child: GridView.extent(
-                maxCrossAxisExtent: 300,
+                maxCrossAxisExtent: 400,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
                 children: const [
