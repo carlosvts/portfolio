@@ -23,6 +23,7 @@ class ProjectsPage extends StatelessWidget {
               // Use shrinkWrap: false (default) inside Expanded
               child: GridView.extent(
                 maxCrossAxisExtent: 400,
+                childAspectRatio: 0.8, // increasing card size a bit
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
                 children: const [
