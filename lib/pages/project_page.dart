@@ -7,6 +7,10 @@ class ProjectsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    int crossAxisCount = screenWidth < 650 ? 1 : (screenWidth < 1000 ? 2 : 3);
+    double aspectRatio = screenWidth < 650 ? 1.6 : 0.85;
+
     return Scaffold(
       body: Column(
         mainAxisSize: MainAxisSize.min,
@@ -21,11 +25,12 @@ class ProjectsPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(32),
               // Use shrinkWrap: false (default) inside Expanded
-              child: GridView.extent(
-                maxCrossAxisExtent: 400,
-                childAspectRatio: 0.8, // increasing card size a bit
+              child: GridView.count(
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: aspectRatio,
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
+
                 children: const [
                   ProjectCard(
                     title: "Chip-8",
