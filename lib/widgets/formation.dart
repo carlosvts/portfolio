@@ -37,8 +37,8 @@ class FormationSection extends StatelessWidget {
         SizedBox(height: 16),
 
         FormationItem(
-          title: 'B.Sc. XXXXX (expected 202x)',
-          subtitle: 'University XXX',
+          title: 'Incoming B.Sc. Computer Science',
+          subtitle: 'Federal University of Lavras (UFLA)',
         ),
 
         SizedBox(height: 12),
