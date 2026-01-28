@@ -58,6 +58,11 @@ class NotesPage extends StatelessWidget {
                               title: "On Memory & CPU Architecture",
                               slug: "on-memory-and-cpu-architecture",
                             ),
+                            NoteItem(
+                              title:
+                                  "A Study in Probability, Bayesian Networks and Markov Models",
+                              slug: "uncertainty-bayesian-markov",
+                            ),
                           ],
                         ),
                       ),

@@ -1,7 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/widgets/navbar.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter/services.dart' show rootBundle;
+
+// Markdown parser
+class _MarkdownBlock {
+  final String content;
+  final bool isLatex;
+
+  _MarkdownBlock(this.content, this.isLatex);
+}
+
+// Parses $$ $$ to LaTeX
+List<_MarkdownBlock> splitMarkdownAndLatex(String input) {
+  final regex = RegExp(r'\$\$(.*?)\$\$', dotAll: true);
+  final blocks = <_MarkdownBlock>[];
+
+  int lastIndex = 0;
+
+  for (final match in regex.allMatches(input)) {
+    if (match.start > lastIndex) {
+      blocks.add(
+        _MarkdownBlock(input.substring(lastIndex, match.start), false),
+      );
+    }
+
+    blocks.add(_MarkdownBlock(match.group(1)!.trim(), true));
+
+    lastIndex = match.end;
+  }
+
+  if (lastIndex < input.length) {
+    blocks.add(_MarkdownBlock(input.substring(lastIndex), false));
+  }
+
+  return blocks;
+}
 
 // A little button that goes back to the notes section
 class BackToNotes extends StatelessWidget {
@@ -87,99 +122,104 @@ class NotePage extends StatelessWidget {
                   );
                 }
 
+                final blocks = splitMarkdownAndLatex(snapshot.data!);
+
                 return Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 720),
                     child: SingleChildScrollView(
-                      padding: const EdgeInsetsGeometry.all(32),
-                      child: MarkdownBody(
-                        data: snapshot.data!,
-                        selectable: true,
-                        imageBuilder: (uri, title, alt) {
-                          return Padding(
-                            padding: const EdgeInsetsGeometry.symmetric(
-                              vertical: 24,
-                            ),
-                            child: Image.asset(
-                              uri.toString(),
-                              fit: BoxFit.contain,
-                            ),
-                          );
-                        },
-
-                        styleSheet:
-                            MarkdownStyleSheet.fromTheme(
-                              Theme.of(context),
-                            ).copyWith(
-                              // HEADERS
-                              h1Padding: const EdgeInsets.only(
-                                top: 32,
-                                bottom: 20,
+                      padding: const EdgeInsets.all(32),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: blocks.map((block) {
+                          if (block.isLatex) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: Math.tex(
+                                block.content,
+                                textStyle: Theme.of(
+                                  context,
+                                ).textTheme.bodyLarge?.copyWith(fontSize: 18),
                               ),
-                              h2Padding: const EdgeInsets.only(
-                                top: 28,
-                                bottom: 16,
-                              ),
-                              h3Padding: const EdgeInsets.only(
-                                top: 24,
-                                bottom: 12,
-                              ),
+                            );
+                          }
 
-                              // P
-                              pPadding: const EdgeInsets.only(bottom: 16),
-
-                              // LISTS
-                              listBulletPadding: const EdgeInsets.only(
-                                bottom: 16,
-                              ),
-
-                              // CODE BLOCKS
-                              codeblockPadding: const EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 12,
-                              ),
-
-                              // QUOTES
-                              blockquotePadding: const EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 20,
-                              ),
-
-                              h1: Theme.of(context).textTheme.displaySmall
-                                  ?.copyWith(
-                                    fontSize: 34,
-                                    fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF5EEAD4), // accent
+                          return MarkdownBody(
+                            data: block.content,
+                            selectable: true,
+                            imageBuilder: (uri, title, alt) {
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 24,
+                                ),
+                                child: Image.asset(
+                                  uri.toString(),
+                                  fit: BoxFit.contain,
+                                ),
+                              );
+                            },
+                            styleSheet:
+                                MarkdownStyleSheet.fromTheme(
+                                  Theme.of(context),
+                                ).copyWith(
+                                  h1Padding: const EdgeInsets.only(
+                                    top: 32,
+                                    bottom: 20,
                                   ),
-                              h2: Theme.of(context).textTheme.headlineMedium
-                                  ?.copyWith(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w600,
+                                  h2Padding: const EdgeInsets.only(
+                                    top: 28,
+                                    bottom: 16,
                                   ),
-                              h3: Theme.of(
-                                context,
-                              ).textTheme.headlineSmall?.copyWith(fontSize: 22),
-                              p: Theme.of(context).textTheme.bodyLarge
-                                  ?.copyWith(fontSize: 17, height: 1.6),
-                              code: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'monospace',
-                              ),
-
-                              blockquoteDecoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceContainerHighest
-                                    .withValues(alpha: 0.3),
-
-                                border: Border(
-                                  left: BorderSide(
-                                    color: const Color(0xFF5EEAD4),
-                                    width: 4,
+                                  h3Padding: const EdgeInsets.only(
+                                    top: 24,
+                                    bottom: 12,
+                                  ),
+                                  pPadding: const EdgeInsets.only(bottom: 16),
+                                  listBulletPadding: const EdgeInsets.only(
+                                    bottom: 16,
+                                  ),
+                                  codeblockPadding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                    horizontal: 12,
+                                  ),
+                                  blockquotePadding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                    horizontal: 20,
+                                  ),
+                                  h1: Theme.of(context).textTheme.displaySmall
+                                      ?.copyWith(
+                                        fontSize: 34,
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color(0xFF5EEAD4),
+                                      ),
+                                  h2: Theme.of(context).textTheme.headlineMedium
+                                      ?.copyWith(
+                                        fontSize: 26,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                  h3: Theme.of(context).textTheme.headlineSmall
+                                      ?.copyWith(fontSize: 22),
+                                  p: Theme.of(context).textTheme.bodyLarge
+                                      ?.copyWith(fontSize: 17, height: 1.6),
+                                  code: const TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'monospace',
+                                  ),
+                                  blockquoteDecoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .surfaceContainerHighest
+                                        .withValues(alpha: 0.3),
+                                    border: const Border(
+                                      left: BorderSide(
+                                        color: Color(0xFF5EEAD4),
+                                        width: 4,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),
